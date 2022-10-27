@@ -1,0 +1,91 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/splash.css' %}" type="text/css">
+ 
+{% endblock css %}
+
+
+
+{% block dashboard %}
+<div class="dashboard">
+<div class="owner">
+   <p>hi <b>Aman</b>
+   <span><img class="profile_img" src="{% static 'images/profile.gif' %}"></span></p>
+   <p id="subheading">owner</p>
+</div>
+
+{% if messages %} 
+{% for message in messages %}
+<div class="credentials_box" id="cred_box">
+  <h2 style="color:blue">
+    {{message}}
+  </h2>
+</div>
+{% endfor %} {% endif %}
+<script>
+  setTimeout(function () {
+    document.getElementById("cred_box").style.display = "none";
+  }, 1000);
+</script>
+
+<div class="card">
+  <div class="due_amount">
+    <p class="text">Total Due Amount :</p>
+    <p class="amount"> &#8377 {{total_due_amount}}</p>   
+    <span><img class="img" src="{% static 'images/total.png' %}"></span></p>
+    
+  </div>
+ <div class="btn"> <a href="{% url 'fetch' %}">See Detail &nbsp	&gt;</a></div>
+</div>
+
+
+</div>
+<div class="footer">
+{% comment %} <div class="left">  <a href="{% url 'insert' %}"> Home</a></div> {% endcomment %}
+ {% comment %} <div class="right">  <a href="{% url 'insert' %}"> Add<a></a></div> {% endcomment %}
+
+ <a href="{% url 'insert' %}"> <button class="left" >Dashboard</button></a>
+<a href="{% url 'insert' %}"> <button class="right" >Add Customer</button></a>
+</div>
+{% comment %} 
+{% if messages %} 
+{% for message in messages %}
+<div class="credentials_box" id="cred_box">
+  <p class="message">
+    {{message}}
+  </p>
+</div>
+{% endfor %} {% endif %}
+
+<script>
+  setTimeout(function () {
+    document.getElementById("cred_box").style.display = "none";
+  }, 1000);
+</script>
+
+
+    <div class="container">
+    
+    <div class="add_customer">
+    <a href="{% url 'insert' %}">
+    <img class="icons" src="{% static 'images/add-user.png' %}" >
+     <p class="text">Add Customer</p>
+    </a>
+    </div>
+    <div class="add_customer">
+    <a href="{% url 'fetch' %}">
+    <img class="icons" src="{% static 'images/file-storage.png' %}" >
+     <p class="text">All Files</p>
+    </a>
+    </div>
+   
+   
+</div> {% endcomment %}
+
+
+
+{% endblock dashboard %}

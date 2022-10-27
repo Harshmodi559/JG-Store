@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/insert_data.css' %}">
+{% endblock css %}
+
+{% block insertdata %}
+
+<div class="dashboard">
+<div class="owner">
+  <p>hi <b>Aman</b>
+  <span><img class="profile_img" src="{% static 'images/profile.gif' %}"></span></p>
+  <p id="subheading">owner</p>
+</div>
+
+{% if messages %} 
+{% for message in messages %}
+<div class="credentials_box" id="cred_box">
+  <h3 style="color:red">
+    {{message}}
+  </h3>
+</div>
+{% endfor %} {% endif %}
+<script>
+  setTimeout(function () {
+    document.getElementById("cred_box").style.display = "none";
+  }, 1000);
+</script>
+    <div class="form">
+        <p>Add Detail</p>
+        <form action="" method="post">
+            {% csrf_token %}
+          
+          <input id="Name" name="name" class="input" type="text" placeholder="Name" />
+   <br>
+          <input id="mobile_number" name="mobile" class="input" type="number" placeholder="Mobile Number" />
+          <br>
+          <input id="Note"  name="note" class="input" type="text" placeholder="Note" />
+          <br>
+          <input id="amount"  name="amount" class="input" type="number" placeholder="Due Amount" />
+<br>
+
+        <button type="submit" class="submit">Add Customer</button>
+        </form>
+    </div>
+
+  </div>
+    <div class="footer">
+      {% comment %} <div class="left">  <a href="{% url 'insert' %}"> Home</a></div> {% endcomment %}
+       {% comment %} <div class="right">  <a href="{% url 'insert' %}"> Add<a></a></div> {% endcomment %}
+      
+       <a href="{% url 'dashboard' %}"> <button class="left">Dashboard</button></a>
+      <a href="{% url 'insert' %}"> <button class="right" >Add Customer</button></a>
+      </div>
+
+{% endblock insertdata %}
+
+
+
+

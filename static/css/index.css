@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Monoton&family=Nunito:wght@200;300;500&display=swap");
+
+body {
+  font-family: "Nunito", sans-serif;
+  background-color: white;
+  margin: 0;
+  color: black;
+}
+
+
+.nav {
+  padding: 13px;
+} 
+
+
+.heading {
+  /* color: white; */
+  color:#3f42e9;
+  font-weight: 600;
+  font-size: 25px;
+  letter-spacing: 1.5px;
+  margin: 0;
+  text-align: center;
+  margin: auto;
+}
+

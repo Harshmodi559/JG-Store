@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/fulldata.css' %}">
+{% endblock css %}
+
+{% block fulldata %}
+  
+<p class="table-heading">Statement Summary</p>
+
+<div id="box">
+  <a href="{% url 'fetch' %}"> <button class="delete">Delete</button></a>
+ <button class="cancel" onclick="close()">Cancel</button>
+</div>
+<table>
+  
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Date Purchased</th>
+      <th scope="col">Note</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for data in context %}
+    <tr onclick="open()">
+      <td data-label="Name">{{data.name}}</td>
+      <td data-label="Amount">{{data.amount}}</td>
+      <td data-label="Phone Number">{{data.mobile_number}}</td>
+      <td data-label="Date Purchased">{{data.date}}</td>
+      <td data-label="Note"><p class="note">{{data.note}}</p></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<script>
+ function open()
+ {
+  const x=document.getElementById("box");
+  x.style.display='block'
+  console.log("opened")
+ }
+
+ function close()
+ {
+  const x=document.getElementById("box");
+  x.style.display="none"
+  console.log("closed")
+ }
+
+
+</script>
+
+
+{% endblock fulldata %}
+     
+{% block bootstrap_cdn %}
+ <link
+ href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+ rel="stylesheet"
+ integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+ crossorigin="anonymous"
+/>
+
+{% endblock bootstrap_cdn %}
+
+{% block bootstrap_js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock bootstrap_js %}
+
+
+
+
+
+
+
