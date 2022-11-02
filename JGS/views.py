@@ -1,4 +1,5 @@
 import json
+from pickle import NONE
 import re
 from django.shortcuts import redirect, render,HttpResponseRedirect
 from django.contrib import messages
@@ -55,12 +56,20 @@ def insert_data(request):
         return redirect("dashboard")
     return render(request,'insert_data.html')
 
-def fetch(request):
+def fetch(request,pk=None):
     data={}
     json_data=json.dumps(data)
+    url=URL
     headers={'content-Type':'application/json'}
-    r=requests.get(URL,headers=headers,data=json_data)
-    data=r.json()
+    if pk is not None:
+        url=URL+str(pk)
+        r=requests.get(url,headers=headers,data=json_data)
+        data=[r.json()]
+
+    else:    
+        r=requests.get(URL,headers=headers,data=json_data)
+        data=r.json()
+   
     return render(request,'fulldata.html',{'context':data})
 
 

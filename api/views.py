@@ -15,6 +15,7 @@ from rest_framework.response import Response
 @api_view(['GET','POST','DELETE','PUT','PATCH'])   ## be defalult ->get 
 def api(request,id=NONE):
     
+    
     if(request.method=='POST'): 
         body=request.data
 
