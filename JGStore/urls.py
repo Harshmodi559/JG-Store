@@ -6,7 +6,8 @@ from api import views as Api
 
 from django.views.static import serve
 from django.conf import settings
-from django.conf.urls import url
+# from django.conf.urls import url    or do this : from django.urls import re_path as url
+from django.urls import include, re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -20,7 +21,7 @@ urlpatterns = [
     path('api/', Api.api, name="api"),
     path('api/<int:id>', Api.api, name="api_by_id"),
 
-    url(r'^media/(?P<path>.*)$', serve,{'document_root':settings.MEDIA_ROOT}),
-    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+    re_path(r'^media/(?P<path>.*)$', serve,{'document_root':settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 ]
 
